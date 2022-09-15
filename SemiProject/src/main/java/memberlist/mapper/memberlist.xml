@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberlist">
+	<!-- 등록된 아이디인지 확인 -->
+	<select id="loginCheck" resultType="String">
+		SELECT userid
+		FROM memberlist
+		WHERE userid=#{userid} AND passwd=#{passwd}
+	</select>
+	
+	<!-- 아이디가 중복인지 확인 -->
+	<select id="idCheck" resultType="String">
+		SELECT userid
+		FROM memberlist
+		WHERE userid=#{userid}
+	</select>
+	
+	<!-- 관리자 계정인지 확인 -->
+	<select id="adminCheck" resultType="String">
+		SELECT adminuser
+		FROM memberlist
+		WHERE userid=#{userid}
+	</select>
+	
+	<!-- 계정을 등록함 -->
+	<insert id="join">
+		INSERT INTO memberlist (userid, passwd, email)
+		VALUES (#{userid}, #{passwd}, #{email})
+	</insert>
+	
+	<!-- 유저의 정보를 가져옴 -->
+	<select id="userInfo" resultType="memberlist.dto.MemberlistDTO">
+		SELECT *
+		FROM memberlist
+		WHERE userid=#{userid}
+	</select>
+	
+	<!-- 유저의 정보를 수정함 -->
+	<update id="userEdit">
+		UPDATE memberlist SET passwd=#{passwd}, email=#{email}
+		WHERE userid=#{userid}
+	</update>
+	
+	<!-- 탈퇴한 계정인지 확인 -->
+	<select id="delCheck" resultType="String">
+		SELECT del
+		FROM memberlist
+		WHERE userid=#{userid}
+	</select>
+	
+	<!-- 계정을 탈퇴처리함 -->
+	<update id="userDel">
+		UPDATE memberlist SET del='Y'
+		WHERE userid=#{userid}
+	</update>
+</mapper>

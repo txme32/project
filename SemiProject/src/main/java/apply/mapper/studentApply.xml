@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studentapply">
+	<!-- 신청자의 정보를 저장 -->
+	<insert id="apply">
+		insert into apply (num, student_name, student_grade, student_tel, student_level, ip)
+		values ((select nvl(max(num)+1,1) from apply), #{student_name}, #{student_grade}, #{student_tel}, #{student_level}, #{ip})
+	</insert>
+	
+	<!-- 중복신청을 확인함 -->
+	<select id="applycheck" resultType="String">
+		select student_tel from apply where student_tel=#{student_tel}
+	</select>
+	
+	<!-- 신청자의 총 인원수를 조회 -->
+	<select id="count" resultType="int">
+		select count(*) from apply
+	</select>
+	
+	<!-- 신청자 자료를 조회함 -->
+	<select id="list" resultType="apply.dto.ApplyDTO">
+		SELECT * FROM (
+			SELECT A.*, rownum rNum FROM (
+				SELECT num, student_name, student_grade, student_tel, student_level, reg_date FROM apply ORDER BY num DESC
+			) A
+		)
+		WHERE rNum BETWEEN #{start} and #{end}
+	</select>
+</mapper>

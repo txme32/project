@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="service">
+	<!-- 게시물 갯수 -->
+	<select id="count" resultType="int">
+		SELECT count(*) FROM service
+	</select>
+	
+	<!-- 특정 페이지의 게시물 조회 -->
+	<select id="list" resultType="service.dto.ServiceDTO">
+		SELECT * FROM (
+			SELECT A.*, rownum rn from (
+				SELECT num, writer, title, content, email, passwd, reg_date, readcount, ref, re_num, ip, filename, filesize, del from service order by ref desc, re_num asc
+			) A
+		) WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 게시물 신규 등록 -->
+	<insert id="save">
+		INSERT INTO service (num, writer, title, content, email, passwd, ref, re_num, ip, filename, filesize)
+		VALUES ((SELECT NVL(MAX(num)+1, 1) FROM service), #{writer}, #{title}, #{content}, #{email}, #{passwd}, (SELECT NVL(MAX(num)+1, 1) FROM service), 1, #{ip}, #{filename}, #{filesize})
+	</insert>
+	
+	<!-- 게시물 하나를 조회 -->
+	<select id="view" resultType="service.dto.ServiceDTO">
+		SELECT * FROM service WHERE num=#{num}
+	</select>
+	
+	<!-- 게시물을 수정 -->
+	<update id="update">
+		UPDATE service SET writer=#{writer}, title=#{title}, content=#{content}, email=#{email}, passwd=#{passwd}, ip=#{ip}, filename=#{filename}, filesize=#{filesize}
+		WHERE num=#{num}
+	</update>
+	
+	<!-- 검색한 게시물 조회 -->
+	<select id="searchList" resultType="service.dto.ServiceDTO">
+		SELECT num, writer, title, content, email, reg_date, readcount, ref, re_num, filename, filesize, del
+		FROM service
+		WHERE ${search_option} LIKE #{keyword} AND del='N'
+	</select>
+	
+	<!-- 게시물 조회 시 조회수 증가 -->
+	<update id="plusReadCount">
+		UPDATE service SET readcount=readcount+1
+		WHERE num=#{num}
+	</update>
+	
+	<!-- 게시물에 맞는 파일 이름 조회 -->
+	<select id="getFileName" resultType="String">
+		SELECT filename
+		FROM service
+		WHERE num=#{num}
+	</select>
+	
+	<!-- 게시물에 맞는 비밀번호 조회 -->
+	<select id="passwordCheck" resultType="String">
+		SELECT passwd
+		FROM service
+		WHERE num=#{num} AND passwd=#{passwd}
+	</select>
+	
+	<!-- 게시물 삭제 처리 -->
+	<update id="delete">
+		UPDATE service
+		SET del='Y'
+		WHERE num=#{num}
+	</update>
+	
+	<!-- 게시물의 ref를 찾음 -->
+	<select id="refSearch" resultType="int">
+		SELECT ref
+		FROM service
+		WHERE num=#{num}
+	</select>
+	
+	<!-- 게시물의 답글을 등록 -->
+	<insert id="reple">
+		INSERT INTO service (num, writer, title, content, email, passwd, ref, re_num, ip, filename, filesize)
+		VALUES ((SELECT NVL(MAX(num)+1, 1) FROM service), #{writer}, #{title}, #{content}, #{email}, #{passwd}, #{ref}, #{re_num}, #{ip}, #{filename}, #{filesize})
+	</insert>
+	
+	<!-- 게시물의 답글 여부 -->
+	<select id="reNumSelect" resultType="String">
+		SELECT num
+		FROM service
+		WHERE ref=#{ref} AND re_num=2
+	</select>
+	
+	<!-- 특정 게시글의 답글을 포함한 갯수 -->
+	<select id="refCount" resultType="int">
+		SELECT count(*)
+		FROM service
+		WHERE ref=#{ref}
+	</select>
+	
+	<!-- 답글의 번호를 조회 -->
+	<select id="repleNum" resultType="int">
+		SELECT num
+		FROM service
+		WHERE ref=#{ref} AND re_num=#{re_num}
+	</select>
+</mapper>
