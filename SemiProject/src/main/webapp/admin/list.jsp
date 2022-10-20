@@ -157,10 +157,10 @@ function list(page){
     </div>
   </div>
 </div>
-
+찐찐찐 최종이라고
 <footer class="container-fluid text-center">
   <p><img src="../images/mainprofilelongremove.png" style="width: 100px;"></p>
 </footer>
-
+찐찐찐최종이다
 </body>
 </html>
