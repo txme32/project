@@ -160,7 +160,8 @@ push
 
 <footer class="container-fluid text-center">
   <p><img src="../images/mainprofilelongremove.png" style="width: 100px;"></p>
+  작업중
 </footer>
-수정된 파일 변경작업
+psdosdfojxiv
 </body>
 </html>
