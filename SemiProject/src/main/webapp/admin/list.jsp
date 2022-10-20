@@ -53,7 +53,7 @@ function list(page){
 </script>
 </head>
 <body>
-
+힝이건몰랏징
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
