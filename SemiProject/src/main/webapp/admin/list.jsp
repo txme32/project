@@ -82,7 +82,6 @@ function list(page){
     </div>
   </div>
 </nav>
-작업중인게 왜이리 많냐
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -157,10 +156,10 @@ function list(page){
     </div>
   </div>
 </div>
-찐찐찐 최종이라고
 <footer class="container-fluid text-center">
   <p><img src="../images/mainprofilelongremove.png" style="width: 100px;"></p>
 </footer>
 찐찐찐최종이다
+응 이거 사용 안해
 </body>
 </html>
