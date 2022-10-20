@@ -160,6 +160,6 @@ function list(page){
   <p><img src="../images/mainprofilelongremove.png" style="width: 100px;"></p>
 </footer>
 찐찐찐최종이다
-응 이거 사용 안해
+응 이거 사용 해
 </body>
 </html>
