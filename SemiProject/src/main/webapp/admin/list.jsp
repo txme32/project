@@ -160,6 +160,6 @@ function list(page){
 <footer class="container-fluid text-center">
   <p><img src="../images/mainprofilelongremove.png" style="width: 100px;"></p>
 </footer>
-
+	
 </body>
 </html>
