@@ -53,7 +53,6 @@ function list(page){
 </script>
 </head>
 <body>
-push
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -157,10 +156,10 @@ push
     </div>
   </div>
 </div>
-
+여기도수정했다자식들
 <footer class="container-fluid text-center">
   <p><img src="../images/mainprofilelongremove.png" style="width: 100px;"></p>
 </footer>
-수정된 파일 변경작업
+진짜수정했다이자식들아
 </body>
 </html>
