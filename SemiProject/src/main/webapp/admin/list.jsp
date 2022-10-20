@@ -53,7 +53,7 @@ function list(page){
 </script>
 </head>
 <body>
-pushpush
+push
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -163,6 +163,5 @@ pushpush
   작업중
 </footer>
 psdosdfojxiv
-	erwkgfnsdlkzxsv er
 </body>
 </html>
