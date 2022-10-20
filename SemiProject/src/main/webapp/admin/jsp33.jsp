@@ -9,6 +9,6 @@
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
-이거다
+ㅎㅎㅎ
 </body>
 </html>
