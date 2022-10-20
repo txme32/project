@@ -53,7 +53,7 @@ function list(page){
 </script>
 </head>
 <body>
-pushpushpush
+push
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -161,8 +161,6 @@ pushpushpush
 <footer class="container-fluid text-center">
   <p><img src="../images/mainprofilelongremove.png" style="width: 100px;"></p>
 </footer>
-psdosdfojxiv
 수정된 파일 변경작업
-	erwkgfnsdlkzxsv er
 </body>
 </html>
